@@ -13,11 +13,11 @@ services:
       - ./uploads:/root/uploads
     restart: unless-stopped
     networks:
-      - storage-network
+      - main_net
 
 networks:
-  storage-network:
-    driver: bridge
+  main_net:
+    external: true
 
 volumes:
   uploads:
