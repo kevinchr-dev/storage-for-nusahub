@@ -1,0 +1,23 @@
+services:
+  storage-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: simple-object-storage
+    ports:
+      - "50001:50001"
+    environment:
+      - PORT=50001
+    volumes:
+      # Mount uploads directory untuk persistent storage
+      - ./uploads:/root/uploads
+    restart: unless-stopped
+    networks:
+      - storage-network
+
+networks:
+  storage-network:
+    driver: bridge
+
+volumes:
+  uploads:
